@@ -1,0 +1,2 @@
+<h2><?= $nuevoTitulo ?></h2>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed ab veniam asperiores autem soluta! At impedit reiciendis dicta blanditiis consequatur esse, nostrum, quae laboriosam veritatis inventore, ea voluptatem voluptate optio.</p>
