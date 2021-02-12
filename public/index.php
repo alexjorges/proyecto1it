@@ -21,6 +21,7 @@
         open404Error();
     }else {
         //callController($match);
+        openhome();
     }
 
     // Esto es una funcion para mandar una cabecera al navegador(header), diciendole que hay un error.
@@ -28,6 +29,11 @@
         header($_SERVER["SERVER_PROTOCOL"] . ' 404 Not Found');
         $controllerObject = new App\Controllers\FrontController;
         $controllerObject->error404();
+    }
+
+    function openHome() {
+        $controllerObject = new App\Controllers\FrontController;
+        $controllerObject->home();
     }
     
 
