@@ -14,14 +14,16 @@
      // '/': La ruta raiz de la app
      // 'FrontController#home': Nombre de el controlador y despues de la almohadilla el método 
      $router->map( 'GET', '/', 'FrontController#home', 'home' );
+     $router->map('GET', '/otra/carpeta', 'FrontController#otraCarpeta');
+     $router->map('GET', '/producto/[i:id]', 'FrontController#producto');
 
      $match = $router->match();
 
     if ($match === false) {
         open404Error();
     }else {
-        //callController($match);
-        openhome();
+        callController($match);
+        
     }
 
     // Esto es una funcion para mandar una cabecera al navegador(header), diciendole que hay un error.
@@ -36,5 +38,19 @@
         $controllerObject->home();
     }
     
+
+    function callController($match) {
+        list( $controller, $action) = explode('#', $match['target']);
+            $controller = 'App\\Controllers\\' . $controller;
+            if (method_exists($controller, $action)) {
+                $controllerObject = new $controller;
+                call_user_func_array(array($controllerObject,$action), $match['params']);
+            }else {
+                open404Error();
+            }
+
+    }
+
+   
 
     
